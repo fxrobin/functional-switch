@@ -46,4 +46,13 @@ public interface SwitchStep <T,R>
    * @return
    */
   R resolve();
+
+  
+  /**
+   * builds and returns the current instance of the build
+   * 
+   * @return
+   */
+  SwitchExpression<T, R> build(); 
+  
 }

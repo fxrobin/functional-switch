@@ -20,14 +20,14 @@ import java.util.function.Predicate;
  * @param <R>
  *          type of the returned value
  */
-public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>
+public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, SwitchExpression<T, R>
 {
-  
+
   /**
    * function executed when no value has been found.
    */
   private Function<T, R> defaultCase;
-  
+
   /**
    * value to evaluate.
    */
@@ -53,8 +53,6 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>
 
   }
 
-
-
   /**
    * initiates the switch flow with the value to test and the returning type.
    * 
@@ -69,6 +67,18 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>
     Switch<T, R> switchExpression = new Switch<>();
     switchExpression.value = value;
     return switchExpression;
+  }
+
+  /**
+   * sets the returning type for late calling of the resolve(T t) method.
+   * 
+   * @param clazz
+   *          returning type
+   * @return a new instance of the switch which allows method chaining
+   */
+  public static <T, R> SwitchDefaultCase<T, R> start()
+  {
+    return new Switch<T, R>();
   }
 
   /**
@@ -88,6 +98,21 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>
   public R resolve()
   {
     return singleValuefunctions.containsKey(value) ? singleValuefunctions.get(value).apply(value) : findAndApplyFirstPredicate();
+  }
+  
+  /**
+   * @see {@link SwitchExpression#resolve(T)}
+   */
+  @Override
+  public R resolve(T value)
+  {
+    this.value = value;
+    return resolve();
+  }
+  
+  public SwitchExpression<T, R> build()
+  {
+    return this;
   }
 
   private R findAndApplyFirstPredicate()
