@@ -70,10 +70,8 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, 
   }
 
   /**
-   * sets the returning type for late calling of the resolve(T t) method.
+   * starts the building of a Switch instance without an initial value to test.
    * 
-   * @param clazz
-   *          returning type
    * @return a new instance of the switch which allows method chaining
    */
   public static <T, R> SwitchDefaultCase<T, R> start()
@@ -110,6 +108,7 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, 
     return resolve();
   }
   
+  @Override
   public SwitchExpression<T, R> build()
   {
     return this;

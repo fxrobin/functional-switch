@@ -2,13 +2,15 @@ package fr.fxjavadevblog.fs;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 public class SwitchTest
 {
   public static SwitchExpression<Integer, String> localSwitch;
 
-  static
+  @BeforeAll
+  public static void init()
   {
     localSwitch = Switch.<Integer, String> start()
                         .defaultCase(value -> value + " : no case!")
