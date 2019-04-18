@@ -62,7 +62,7 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, 
    *          returning type
    * @return a new instance of the switch which allows method chaining
    */
-  public static <T, R> SwitchDefaultCase<T, R> of(T value, Class<R> clazz)
+  public static <T, R> SwitchDefaultCase<T, R> of(T value, Class<R> clazz) // NOSONAR
   {
     Switch<T, R> switchExpression = new Switch<>();
     switchExpression.value = value;
@@ -76,7 +76,7 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, 
    */
   public static <T, R> SwitchDefaultCase<T, R> start()
   {
-    return new Switch<T, R>();
+    return new Switch<>();
   }
 
   /**
