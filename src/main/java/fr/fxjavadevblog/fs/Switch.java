@@ -116,14 +116,11 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, 
 
   private R findAndApplyFirstPredicate()
   {
-    for (Entry<Predicate<T>, Function<T, R>> entry : predicates)
-    {
-      if (entry.getKey().test(value))
-      { 
-        return entry.getValue().apply(value); 
-      }
-    }
-    return this.defaultCase.apply(value);
+    return predicates.stream()
+                      .filter(e-> e.getKey().test(value))
+                      .map(e -> e.getValue().apply(value))
+                      .findFirst()
+                      .orElse(this.defaultCase.apply(value));
   }
 
   /**
