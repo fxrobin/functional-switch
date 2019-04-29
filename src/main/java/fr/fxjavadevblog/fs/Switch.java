@@ -1,7 +1,7 @@
 package fr.fxjavadevblog.fs;
 
 import java.util.AbstractMap.SimpleEntry;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +35,9 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, 
 
   /**
    * map of functions keyed by the matching value.
+   * Chosen implementation is LinkedHashMap in order to preserve insertion order while iterating over the entries.
    */
-  private Map<T, Function<T, R>> singleValuefunctions = new HashMap<>();
+  private Map<T, Function<T, R>> singleValuefunctions = new LinkedHashMap<>();
 
   /**
    * map of functions keyed by predicates. All the predicates are tested.
