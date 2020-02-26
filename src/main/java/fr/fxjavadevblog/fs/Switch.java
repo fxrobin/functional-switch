@@ -119,8 +119,7 @@ public class Switch<T, R> implements SwitchDefaultCase<T, R>, SwitchStep<T, R>, 
 	@Override
 	public R apply(T value)
 	{
-		this.value = value;
-		return resolve();
+		return resolve(value);
 	}
 
 	@Override
