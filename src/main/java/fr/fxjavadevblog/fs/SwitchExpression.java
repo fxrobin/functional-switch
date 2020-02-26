@@ -1,5 +1,7 @@
 package fr.fxjavadevblog.fs;
 
+import java.util.function.Function;
+
 /**
  * represents a fully constructed Switch instance which can resolve a specific value.
  * 
@@ -8,7 +10,7 @@ package fr.fxjavadevblog.fs;
  * @param <T>
  * @param <R>
  */
-public interface SwitchExpression <T, R>
+public interface SwitchExpression <T, R> extends Function<T, R>
 {
   /**
    * last operation of the switch method chaining which executes the flow of the
@@ -21,4 +23,13 @@ public interface SwitchExpression <T, R>
    *          result of the Switch flow.
    */
   R resolve(T value);
+  
+  /**
+   * last operation of the switch method chaining which executes the flow
+   * of the rules looking first for single value, then predicates, then the
+   * default function.
+   * 
+   * @return
+   */
+  R resolve();
 }

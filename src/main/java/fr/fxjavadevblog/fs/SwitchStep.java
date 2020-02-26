@@ -39,16 +39,6 @@ public interface SwitchStep <T,R>
   SwitchStep<T, R> predicate(Predicate<T> predicate, Function<T, R> function);
   
   /**
-   * last operation of the switch method chaining which executes the flow
-   * of the rules looking first for single value, then predicates, then the
-   * default function.
-   * 
-   * @return
-   */
-  R resolve();
-
-  
-  /**
    * builds and returns the current instance of the build
    * 
    * @return
