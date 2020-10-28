@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A Switch/Case converted into functional Java 8 style.
+A Switch/Case converted into functional programming with Java. (JDK 8 and after).
 
 The original blog article is available only in French here : https://www.fxjavadevblog.fr/functional-switch/
 
