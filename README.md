@@ -8,7 +8,31 @@ A Switch/Case converted into functional programming with Java. (JDK 8 and after)
 
 The original blog article is available only in French here : https://www.fxjavadevblog.fr/functional-switch/
 
-## Usage
+## Usages
+
+### Basic usage
+
+```java
+String result = Switch.of(initialValue, String.class)
+                      .defaultCase(value -> value + " : no case!")
+                      .single(10, value -> "10 is the best value!")
+                      .single(3, value -> "3 is an exception!")
+                      .resolve();
+```
+
+### Advanced usage
+
+```java
+String result = Switch.of(initialValue, String.class)
+                      .defaultCase(value -> value + " : no case!")
+                      .predicate(value -> value > 10 && value < 15, value -> "superior to 10!")
+                      .predicate(value -> value >= 0 && value <= 10, value -> value + " is between 0 and 10")
+                      .single(10, value -> "10 is the best value!")
+                      .single(3, value -> "3 is an exception!")
+                      .resolve();
+```
+
+### Unit Tests
 
 ```java
 public class SwitchTest
